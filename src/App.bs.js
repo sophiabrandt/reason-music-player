@@ -4,13 +4,20 @@
 var React = require("react");
 var TrackList$ReactHooksTemplate = require("./TrackList.bs.js");
 var MusicPlayer$ReactHooksTemplate = require("./MusicPlayer.bs.js");
+var PlayerControls$ReactHooksTemplate = require("./PlayerControls.bs.js");
 
 function App(Props) {
-  return React.createElement(MusicPlayer$ReactHooksTemplate.make, {
-              children: React.createElement("div", {
-                    className: "container"
-                  }, React.createElement(TrackList$ReactHooksTemplate.make, { }))
-            });
+  return React.createElement("div", {
+              className: "section is-fullheignt"
+            }, React.createElement("div", {
+                  className: "container"
+                }, React.createElement("h1", {
+                      className: "is-size-2 has-text-centered is-capitalized"
+                    }, "Reason Music Player"), React.createElement("br", undefined), React.createElement("div", {
+                      className: "column is-4 is-offset-4"
+                    }, React.createElement(MusicPlayer$ReactHooksTemplate.make, {
+                          children: null
+                        }, React.createElement(TrackList$ReactHooksTemplate.make, { }), React.createElement(PlayerControls$ReactHooksTemplate.make, { })))));
 }
 
 var make = App;

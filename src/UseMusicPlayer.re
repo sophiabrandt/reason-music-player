@@ -6,6 +6,12 @@ let useMusicPlayer = () => {
 
   let currentTrackIndex = state.currentTrackIndex;
 
+  let currentTrackName =
+    switch (state.currentTrackIndex) {
+    | None => "No Current Track"
+    | Some(idx) => state.tracks[idx].name
+    };
+
   let togglePlay = () => MusicPlayer.TogglePlay |> dispatch;
 
   let playTrack = index =>
@@ -18,19 +24,22 @@ let useMusicPlayer = () => {
   let playPreviousTrack = _ =>
     switch (state.currentTrackIndex) {
     | None => MusicPlayer.PlayTrack(0) |> dispatch
-    | Some(idx) => playTrack(idx - 1)
+    | Some(idx) => idx === 0 ? playTrack(idx) : playTrack(idx - 1)
     };
 
-  let playNextTrack = _ =>
+  let playNextTrack = _ => {
+    let trackListEnd = Array.length(trackList) - 1;
     switch (state.currentTrackIndex) {
     | None => MusicPlayer.PlayTrack(0) |> dispatch
-    | Some(idx) => playTrack(idx + 1)
+    | Some(idx) => idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1)
     };
+  };
 
   (
     isPlaying,
     trackList,
     currentTrackIndex,
+    currentTrackName,
     togglePlay,
     playTrack,
     playPreviousTrack,

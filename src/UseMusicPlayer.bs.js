@@ -3,6 +3,7 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var MusicPlayer$ReactHooksTemplate = require("./MusicPlayer.bs.js");
 
 function useMusicPlayer(param) {
@@ -12,6 +13,8 @@ function useMusicPlayer(param) {
   var isPlaying = state[/* isPlaying */3];
   var trackList = state[/* tracks */1];
   var currentTrackIndex = state[/* currentTrackIndex */2];
+  var match$1 = state[/* currentTrackIndex */2];
+  var currentTrackName = match$1 !== undefined ? Caml_array.caml_array_get(state[/* tracks */1], match$1)[/* name */0] : "No Current Track";
   var togglePlay = function (param) {
     return Curry._1(dispatch, /* TogglePlay */0);
   };
@@ -31,15 +34,28 @@ function useMusicPlayer(param) {
   var playPreviousTrack = function (param) {
     var match = state[/* currentTrackIndex */2];
     if (match !== undefined) {
-      return playTrack(match - 1 | 0);
+      var idx = match;
+      var match$1 = idx === 0;
+      if (match$1) {
+        return playTrack(idx);
+      } else {
+        return playTrack(idx - 1 | 0);
+      }
     } else {
       return Curry._1(dispatch, /* PlayTrack */[0]);
     }
   };
   var playNextTrack = function (param) {
+    var trackListEnd = trackList.length - 1 | 0;
     var match = state[/* currentTrackIndex */2];
     if (match !== undefined) {
-      return playTrack(match + 1 | 0);
+      var idx = match;
+      var match$1 = idx === trackListEnd;
+      if (match$1) {
+        return playTrack(idx);
+      } else {
+        return playTrack(idx + 1 | 0);
+      }
     } else {
       return Curry._1(dispatch, /* PlayTrack */[0]);
     }
@@ -48,6 +64,7 @@ function useMusicPlayer(param) {
           isPlaying,
           trackList,
           currentTrackIndex,
+          currentTrackName,
           togglePlay,
           playTrack,
           playPreviousTrack,

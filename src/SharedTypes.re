@@ -11,4 +11,3 @@ type state = {
   currentTrackIndex: option(int),
   isPlaying: bool,
 };
-

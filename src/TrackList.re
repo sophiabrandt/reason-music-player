@@ -6,10 +6,11 @@ let make = () => {
     isPlaying,
     trackList,
     currentTrackIndex,
-    togglePlay,
+    _currentTrackName,
+    _togglePlay,
     playTrack,
-    playPreviousTrack,
-    playNextTrack,
+    _playPreviousTrack,
+    _playNextTrack,
   ) =
     UseMusicPlayer.useMusicPlayer();
 

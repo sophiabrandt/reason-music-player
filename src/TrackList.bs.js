@@ -4,11 +4,11 @@
 var $$Array = require("bs-platform/lib/js/array.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
-var UseMusicPlayer$ReactHooksTemplate = require("./useMusicPlayer.bs.js");
+var UseMusicPlayer$ReactHooksTemplate = require("./UseMusicPlayer.bs.js");
 
 function TrackList(Props) {
   var match = UseMusicPlayer$ReactHooksTemplate.useMusicPlayer(/* () */0);
-  var playTrack = match[4];
+  var playTrack = match[5];
   var currentTrackIndex = match[2];
   var isPlaying = match[0];
   return React.createElement(React.Fragment, undefined, $$Array.mapi((function (index, track) {
