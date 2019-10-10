@@ -25,7 +25,16 @@ var initialState = /* record */[
   /* isPlaying */false
 ];
 
-var musicPlayerContext = React.createContext(initialState);
+function reducer(state, action) {
+  return state;
+}
+
+var musicPlayerContext = React.createContext(/* tuple */[
+      initialState,
+      (function (prim) {
+          return /* () */0;
+        })
+    ]);
 
 function makeProps(value, children, param) {
   return {
@@ -41,7 +50,20 @@ var MusicPlayerProvider = /* module */[
   /* make */make
 ];
 
+function MusicPlayer(Props) {
+  var children = Props.children;
+  var match = React.useReducer(reducer, initialState);
+  return React.createElement(make, makeProps(/* tuple */[
+                  match[0],
+                  match[1]
+                ], children, /* () */0));
+}
+
+var make$1 = MusicPlayer;
+
 exports.initialState = initialState;
+exports.reducer = reducer;
 exports.musicPlayerContext = musicPlayerContext;
 exports.MusicPlayerProvider = MusicPlayerProvider;
+exports.make = make$1;
 /* musicPlayerContext Not a pure module */

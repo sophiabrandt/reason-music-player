@@ -2,9 +2,15 @@
 'use strict';
 
 var React = require("react");
+var TrackList$ReactHooksTemplate = require("./TrackList.bs.js");
+var MusicPlayer$ReactHooksTemplate = require("./MusicPlayer.bs.js");
 
 function App(Props) {
-  return React.createElement("div", undefined, React.createElement("p", undefined, "Hello World"));
+  return React.createElement(MusicPlayer$ReactHooksTemplate.make, {
+              children: React.createElement("div", {
+                    className: "container"
+                  }, React.createElement(TrackList$ReactHooksTemplate.make, { }))
+            });
 }
 
 var make = App;

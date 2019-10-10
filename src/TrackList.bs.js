@@ -3,15 +3,10 @@
 
 var $$Array = require("bs-platform/lib/js/array.js");
 var React = require("react");
-var MusicPlayerContext$ReactHooksTemplate = require("./MusicPlayerContext.bs.js");
-
-function reducer(state, action) {
-  return state;
-}
+var MusicPlayer$ReactHooksTemplate = require("./MusicPlayer.bs.js");
 
 function TrackList(Props) {
-  var initialState = React.useContext(MusicPlayerContext$ReactHooksTemplate.musicPlayerContext);
-  var match = React.useReducer(reducer, initialState);
+  var match = React.useContext(MusicPlayer$ReactHooksTemplate.musicPlayerContext);
   return React.createElement(React.Fragment, undefined, $$Array.map((function (track) {
                     return React.createElement("div", {
                                 className: "box"
@@ -23,6 +18,5 @@ function TrackList(Props) {
 
 var make = TrackList;
 
-exports.reducer = reducer;
 exports.make = make;
 /* react Not a pure module */

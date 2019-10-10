@@ -9,8 +9,15 @@ let initialState: SharedTypes.state = {
   isPlaying: false,
 };
 
-let musicPlayerContext: React.Context.t(SharedTypes.state) =
-  React.createContext(initialState);
+type action =
+  | DoSomething;
+
+let reducer = (state: SharedTypes.state, action) =>
+  switch (action) {
+  | DoSomething => state
+  };
+
+let musicPlayerContext = React.createContext((initialState, ignore));
 
 module MusicPlayerProvider = {
   let makeProps = (~value, ~children, ()) => {
@@ -18,4 +25,13 @@ module MusicPlayerProvider = {
     "children": children,
   };
   let make = React.Context.provider(musicPlayerContext);
+};
+
+[@react.component]
+let make = (~children) => {
+  let (state, dispatch) = React.useReducer(reducer, initialState);
+
+  <MusicPlayerProvider value=(state, dispatch)>
+    children
+  </MusicPlayerProvider>;
 };
