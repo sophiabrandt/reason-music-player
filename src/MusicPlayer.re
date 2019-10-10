@@ -10,14 +10,28 @@ let initialState: SharedTypes.state = {
 };
 
 type action =
-  | DoSomething;
+  | TogglePlay
+  | PlayTrack(int);
+
+let withTogglePlay = state: SharedTypes.state => {
+  ...state,
+  isPlaying: !state.SharedTypes.isPlaying,
+};
+
+let withPlayTrack = (state: SharedTypes.state, index: int) => {
+  ...state,
+  currentTrackIndex: Some(index),
+  isPlaying: true,
+};
 
 let reducer = (state: SharedTypes.state, action) =>
   switch (action) {
-  | DoSomething => state
+  | TogglePlay => withTogglePlay(state)
+  | PlayTrack(index) => withPlayTrack(state, index)
   };
 
 let musicPlayerContext = React.createContext((initialState, ignore));
+let musicPlayerContextProvider = React.Context.provider(musicPlayerContext);
 
 module MusicPlayerProvider = {
   let makeProps = (~value, ~children, ()) => {

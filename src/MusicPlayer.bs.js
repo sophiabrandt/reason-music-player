@@ -25,8 +25,30 @@ var initialState = /* record */[
   /* isPlaying */false
 ];
 
+function withTogglePlay(state) {
+  return /* record */[
+          /* audioPlayer */state[/* audioPlayer */0],
+          /* tracks */state[/* tracks */1],
+          /* currentTrackIndex */state[/* currentTrackIndex */2],
+          /* isPlaying */!state[/* isPlaying */3]
+        ];
+}
+
+function withPlayTrack(state, index) {
+  return /* record */[
+          /* audioPlayer */state[/* audioPlayer */0],
+          /* tracks */state[/* tracks */1],
+          /* currentTrackIndex */index,
+          /* isPlaying */true
+        ];
+}
+
 function reducer(state, action) {
-  return state;
+  if (action) {
+    return withPlayTrack(state, action[0]);
+  } else {
+    return withTogglePlay(state);
+  }
 }
 
 var musicPlayerContext = React.createContext(/* tuple */[
@@ -35,6 +57,8 @@ var musicPlayerContext = React.createContext(/* tuple */[
           return /* () */0;
         })
     ]);
+
+var musicPlayerContextProvider = musicPlayerContext.Provider;
 
 function makeProps(value, children, param) {
   return {
@@ -62,8 +86,11 @@ function MusicPlayer(Props) {
 var make$1 = MusicPlayer;
 
 exports.initialState = initialState;
+exports.withTogglePlay = withTogglePlay;
+exports.withPlayTrack = withPlayTrack;
 exports.reducer = reducer;
 exports.musicPlayerContext = musicPlayerContext;
+exports.musicPlayerContextProvider = musicPlayerContextProvider;
 exports.MusicPlayerProvider = MusicPlayerProvider;
 exports.make = make$1;
 /* musicPlayerContext Not a pure module */

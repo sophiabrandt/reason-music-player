@@ -2,18 +2,41 @@
 'use strict';
 
 var $$Array = require("bs-platform/lib/js/array.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
-var MusicPlayer$ReactHooksTemplate = require("./MusicPlayer.bs.js");
+var UseMusicPlayer$ReactHooksTemplate = require("./useMusicPlayer.bs.js");
 
 function TrackList(Props) {
-  var match = React.useContext(MusicPlayer$ReactHooksTemplate.musicPlayerContext);
-  return React.createElement(React.Fragment, undefined, $$Array.map((function (track) {
+  var match = UseMusicPlayer$ReactHooksTemplate.useMusicPlayer(/* () */0);
+  var playTrack = match[4];
+  var currentTrackIndex = match[2];
+  var isPlaying = match[0];
+  return React.createElement(React.Fragment, undefined, $$Array.mapi((function (index, track) {
+                    var tmp;
+                    if (currentTrackIndex !== undefined) {
+                      var match = currentTrackIndex === index && isPlaying;
+                      tmp = match ? React.createElement("i", {
+                              className: "fas fa-pause"
+                            }) : React.createElement("i", {
+                              className: "fas fa-play"
+                            });
+                    } else {
+                      tmp = React.createElement("i", {
+                            className: "fas fa-play"
+                          });
+                    }
                     return React.createElement("div", {
+                                key: String(index),
                                 className: "box"
-                              }, React.createElement("div", {
+                              }, React.createElement("button", {
+                                    className: "button",
+                                    onClick: (function (param) {
+                                        return Curry._1(playTrack, index);
+                                      })
+                                  }, tmp), React.createElement("div", {
                                     className: "song-title"
                                   }, track[/* name */0]));
-                  }), match[0][/* tracks */1]));
+                  }), match[1]));
 }
 
 var make = TrackList;
