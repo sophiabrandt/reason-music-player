@@ -1,5 +1,6 @@
 let useMusicPlayer = () => {
   let (state, dispatch) = React.useContext(MusicPlayer.musicPlayerContext);
+
   let isPlaying = state.isPlaying;
 
   let trackList = state.tracks;
@@ -8,7 +9,7 @@ let useMusicPlayer = () => {
 
   let currentTrackName =
     switch (state.currentTrackIndex) {
-    | None => "No Current Track"
+    | None => ""
     | Some(idx) => state.tracks[idx].name
     };
 
@@ -23,15 +24,19 @@ let useMusicPlayer = () => {
 
   let playPreviousTrack = _ =>
     switch (state.currentTrackIndex) {
-    | None => MusicPlayer.PlayTrack(0) |> dispatch
-    | Some(idx) => idx === 0 ? playTrack(idx) : playTrack(idx - 1)
+    | None => ()
+    | Some(idx) =>
+      togglePlay();
+      idx === 0 ? playTrack(idx) : playTrack(idx - 1);
     };
 
   let playNextTrack = _ => {
     let trackListEnd = Array.length(trackList) - 1;
     switch (state.currentTrackIndex) {
-    | None => MusicPlayer.PlayTrack(0) |> dispatch
-    | Some(idx) => idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1)
+    | None => ()
+    | Some(idx) =>
+      togglePlay();
+      idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1);
     };
   };
 

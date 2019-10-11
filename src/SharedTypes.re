@@ -6,8 +6,8 @@ type musicTrack = {
 type musicTracks = array(musicTrack);
 
 type state = {
-  audioPlayer: string,
   tracks: musicTracks,
   currentTrackIndex: option(int),
   isPlaying: bool,
+  audioPlayer: JsAudio.audio,
 };

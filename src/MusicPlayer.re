@@ -1,12 +1,17 @@
+[@bs.module "./bensound-summer.mp3"] external summer: string = "default";
+[@bs.module "./bensound-ukulele.mp3"] external ukulele: string = "default";
+[@bs.module "./bensound-creativeminds.mp3"]
+external creativeminds: string = "default";
+
 let initialState: SharedTypes.state = {
-  audioPlayer: "audio",
   tracks: [|
-    {name: "Lost Chameleon - Genesis", file: "LostChameleon"},
-    {name: "The Hipsta - Shaken Soda", file: "Rock"},
-    {name: "Tobu - Such Fun", file: "Tobu"},
+    {name: "Benjamin Tissot - Summer", file: summer},
+    {name: "Benjamin Tissot - Ukulele", file: ukulele},
+    {name: "Benjamin Tissot - Creative Minds", file: creativeminds},
   |],
   currentTrackIndex: None,
   isPlaying: false,
+  audioPlayer: JsAudio.make(""),
 };
 
 type action =
@@ -19,9 +24,14 @@ let withTogglePlay = state: SharedTypes.state => {
 };
 
 let withPlayTrack = (state: SharedTypes.state, index: int) => {
-  ...state,
-  currentTrackIndex: Some(index),
-  isPlaying: true,
+  let newState = {
+    ...state,
+    currentTrackIndex: Some(index),
+    isPlaying: true,
+    audioPlayer: JsAudio.(make(state.tracks[index].file)),
+  };
+  Js.log(newState.isPlaying);
+  newState;
 };
 
 let reducer = (state: SharedTypes.state, action) =>
@@ -44,6 +54,20 @@ module MusicPlayerProvider = {
 [@react.component]
 let make = (~children) => {
   let (state, dispatch) = React.useReducer(reducer, initialState);
+
+  React.useEffect1(
+    () => {
+      switch (state.currentTrackIndex) {
+      | None => ()
+      | Some(_idx) =>
+        state.isPlaying ?
+          JsAudio.(state.audioPlayer |> play) :
+          JsAudio.(state.audioPlayer |> pause)
+      };
+      None;
+    },
+    [|state|],
+  );
 
   <MusicPlayerProvider value=(state, dispatch)>
     children

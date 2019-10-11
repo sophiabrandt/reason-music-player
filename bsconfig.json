@@ -1,21 +1,20 @@
-
 {
-  "name": "react-hooks-template",
+  "name": "reason-music-player",
   "reason": {
     "react-jsx": 3
   },
   "sources": {
-    "dir" : "src",
-    "subdirs" : true
+    "dir": "src",
+    "subdirs": true
   },
-  "package-specs": [{
-    "module": "commonjs",
-    "in-source": true
-  }],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": [
-    "reason-react"
-  ],
+  "bs-dependencies": ["reason-react"],
   "refmt": 3
 }
