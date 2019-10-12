@@ -3,9 +3,8 @@ open ReactUtils;
 [@react.component]
 let make = () => {
   let (
-    isPlaying,
+    playing,
     _trackList,
-    currentTrackIndex,
     currentTrackName,
     togglePlay,
     _playTrack,
@@ -24,9 +23,9 @@ let make = () => {
           className="button has-text-light has-background-grey-dark"
           onClick=playPreviousTrack
           disabled={
-            switch (currentTrackIndex) {
-            | None => true
-            | Some(_idx) => false
+            switch (playing) {
+            | Playing(Some(_idx)) => false
+            | _ => true
             }
           }>
           <i className="fas fa-step-backward" />
@@ -35,23 +34,25 @@ let make = () => {
           className="button has-text-light has-background-grey-dark"
           onClick={_ => togglePlay()}
           disabled={
-            switch (currentTrackIndex) {
-            | None => true
-            | Some(_idx) => false
+            switch (playing) {
+            | Playing(Some(_idx)) => false
+            | _ => true
             }
           }>
           {
-            isPlaying ?
-              <i className="fas fa-pause" /> : <i className="fa fa-play" />
+            switch (playing) {
+            | Playing(Some(_idx)) => <i className="fas fa-pause" />
+            | _ => <i className="fas fa-play" />
+            }
           }
         </button>
         <button
           className="button has-text-light has-background-grey-dark"
           onClick=playNextTrack
           disabled={
-            switch (currentTrackIndex) {
-            | None => true
-            | Some(_idx) => false
+            switch (playing) {
+            | Playing(Some(_idx)) => false
+            | _ => true
             }
           }>
           <i className="fas fa-step-forward" />

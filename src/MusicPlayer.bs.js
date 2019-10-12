@@ -27,36 +27,28 @@ var initialState_000 = /* tracks : array */[
   ]
 ];
 
-var initialState_003 = /* audioPlayer */new Audio("");
+var initialState_002 = /* audioPlayer */new Audio("");
 
 var initialState = /* record */[
   initialState_000,
-  /* currentTrackIndex */undefined,
-  /* isPlaying */false,
-  initialState_003
+  /* playing : NotPlaying */0,
+  initialState_002
 ];
 
 function withTogglePlay(state) {
   return /* record */[
           /* tracks */state[/* tracks */0],
-          /* currentTrackIndex */state[/* currentTrackIndex */1],
-          /* isPlaying */!state[/* isPlaying */2],
-          /* audioPlayer */state[/* audioPlayer */3]
+          /* playing : NotPlaying */0,
+          /* audioPlayer */state[/* audioPlayer */2]
         ];
 }
 
 function withPlayTrack(state, index) {
-  var newState_000 = /* tracks */state[/* tracks */0];
-  var newState_001 = /* currentTrackIndex */index;
-  var newState_003 = /* audioPlayer */new Audio(Caml_array.caml_array_get(state[/* tracks */0], index)[/* file */1]);
-  var newState = /* record */[
-    newState_000,
-    newState_001,
-    /* isPlaying */true,
-    newState_003
-  ];
-  console.log(true);
-  return newState;
+  return /* record */[
+          /* tracks */state[/* tracks */0],
+          /* playing : Playing */[index],
+          /* audioPlayer */new Audio(Caml_array.caml_array_get(state[/* tracks */0], index)[/* file */1])
+        ];
 }
 
 function reducer(state, action) {
@@ -95,17 +87,18 @@ function MusicPlayer(Props) {
   var match = React.useReducer(reducer, initialState);
   var state = match[0];
   React.useEffect((function () {
-          var match = state[/* currentTrackIndex */1];
-          if (match !== undefined) {
-            var match$1 = state[/* isPlaying */2];
-            if (match$1) {
-              state[/* audioPlayer */3].play();
+          var match = state[/* playing */1];
+          if (match) {
+            if (match[0] !== undefined) {
+              state[/* audioPlayer */2].play();
             } else {
-              state[/* audioPlayer */3].pause();
+              state[/* audioPlayer */2].pause();
             }
+          } else {
+            state[/* audioPlayer */2].pause();
           }
           return undefined;
-        }), /* array */[state]);
+        }), /* array */[state[/* playing */1]]);
   return React.createElement(make, makeProps(/* tuple */[
                   state,
                   match[1]

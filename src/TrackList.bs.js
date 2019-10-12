@@ -7,19 +7,27 @@ import * as UseMusicPlayer$ReasonMusicPlayer from "./UseMusicPlayer.bs.js";
 
 function TrackList(Props) {
   var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(/* () */0);
-  var playTrack = match[5];
-  var currentTrackIndex = match[2];
-  var isPlaying = match[0];
+  var playTrack = match[4];
+  var playing = match[0];
   return React.createElement(React.Fragment, undefined, $$Array.mapi((function (index, track) {
                     var tmp;
-                    if (currentTrackIndex !== undefined) {
-                      var match = currentTrackIndex === index && isPlaying;
-                      tmp = match ? React.createElement("i", {
-                              className: "fas fa-pause"
-                            }) : React.createElement("i", {
-                              className: "fas fa-play"
-                            });
+                    var exit = 0;
+                    if (playing) {
+                      var match = playing[0];
+                      if (match !== undefined) {
+                        var match$1 = match === index;
+                        tmp = match$1 ? React.createElement("i", {
+                                className: "fas fa-pause"
+                              }) : React.createElement("i", {
+                                className: "fas fa-play"
+                              });
+                      } else {
+                        exit = 1;
+                      }
                     } else {
+                      exit = 1;
+                    }
+                    if (exit === 1) {
                       tmp = React.createElement("i", {
                             className: "fas fa-play"
                           });

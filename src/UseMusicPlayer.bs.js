@@ -9,20 +9,28 @@ function useMusicPlayer(param) {
   var match = React.useContext(MusicPlayer$ReasonMusicPlayer.musicPlayerContext);
   var dispatch = match[1];
   var state = match[0];
-  var isPlaying = state[/* isPlaying */2];
+  var playing = state[/* playing */1];
   var trackList = state[/* tracks */0];
-  var currentTrackIndex = state[/* currentTrackIndex */1];
-  var match$1 = state[/* currentTrackIndex */1];
-  var currentTrackName = match$1 !== undefined ? Caml_array.caml_array_get(state[/* tracks */0], match$1)[/* name */0] : "";
+  var currentTrackName;
+  if (playing) {
+    var match$1 = playing[0];
+    currentTrackName = match$1 !== undefined ? Caml_array.caml_array_get(state[/* tracks */0], match$1)[/* name */0] : "Please choose a track to play";
+  } else {
+    currentTrackName = "Please choose a track to play";
+  }
   var togglePlay = function (param) {
     return Curry._1(dispatch, /* TogglePlay */0);
   };
   var playTrack = function (index) {
-    var match = state[/* currentTrackIndex */1];
-    if (match !== undefined) {
-      var match$1 = index === match;
-      if (match$1) {
-        return Curry._1(dispatch, /* TogglePlay */0);
+    if (playing) {
+      var match = playing[0];
+      if (match !== undefined) {
+        var match$1 = index === match;
+        if (match$1) {
+          return Curry._1(dispatch, /* TogglePlay */0);
+        } else {
+          return Curry._1(dispatch, /* PlayTrack */[index]);
+        }
       } else {
         return Curry._1(dispatch, /* PlayTrack */[index]);
       }
@@ -31,15 +39,19 @@ function useMusicPlayer(param) {
     }
   };
   var playPreviousTrack = function (param) {
-    var match = state[/* currentTrackIndex */1];
-    if (match !== undefined) {
-      var idx = match;
-      Curry._1(dispatch, /* TogglePlay */0);
-      var match$1 = idx === 0;
-      if (match$1) {
-        return playTrack(idx);
+    Curry._1(dispatch, /* TogglePlay */0);
+    if (playing) {
+      var match = playing[0];
+      if (match !== undefined) {
+        var idx = match;
+        var match$1 = idx === 0;
+        if (match$1) {
+          return playTrack(idx);
+        } else {
+          return playTrack(idx - 1 | 0);
+        }
       } else {
-        return playTrack(idx - 1 | 0);
+        return /* () */0;
       }
     } else {
       return /* () */0;
@@ -47,24 +59,27 @@ function useMusicPlayer(param) {
   };
   var playNextTrack = function (param) {
     var trackListEnd = trackList.length - 1 | 0;
-    var match = state[/* currentTrackIndex */1];
-    if (match !== undefined) {
-      var idx = match;
-      Curry._1(dispatch, /* TogglePlay */0);
-      var match$1 = idx === trackListEnd;
-      if (match$1) {
-        return playTrack(idx);
+    Curry._1(dispatch, /* TogglePlay */0);
+    if (playing) {
+      var match = playing[0];
+      if (match !== undefined) {
+        var idx = match;
+        var match$1 = idx === trackListEnd;
+        if (match$1) {
+          return playTrack(idx);
+        } else {
+          return playTrack(idx + 1 | 0);
+        }
       } else {
-        return playTrack(idx + 1 | 0);
+        return /* () */0;
       }
     } else {
       return /* () */0;
     }
   };
   return /* tuple */[
-          isPlaying,
+          playing,
           trackList,
-          currentTrackIndex,
           currentTrackName,
           togglePlay,
           playTrack,

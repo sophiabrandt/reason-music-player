@@ -6,34 +6,44 @@ import * as UseMusicPlayer$ReasonMusicPlayer from "./UseMusicPlayer.bs.js";
 
 function PlayerControls(Props) {
   var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(/* () */0);
-  var togglePlay = match[4];
-  var currentTrackIndex = match[2];
+  var togglePlay = match[3];
+  var playing = match[0];
+  var tmp;
+  var exit = 0;
+  if (playing && playing[0] !== undefined) {
+    tmp = React.createElement("i", {
+          className: "fas fa-pause"
+        });
+  } else {
+    exit = 1;
+  }
+  if (exit === 1) {
+    tmp = React.createElement("i", {
+          className: "fas fa-play"
+        });
+  }
   return React.createElement(React.Fragment, undefined, React.createElement("div", {
                   className: "box controls has-background-grey-dark"
                 }, React.createElement("div", {
                       className: "current-track has-text-light"
-                    }, React.createElement("marquee", undefined, match[3])), React.createElement("div", {
+                    }, React.createElement("marquee", undefined, match[2])), React.createElement("div", {
                       className: "has-text-centered"
                     }, React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: currentTrackIndex === undefined,
-                          onClick: match[6]
+                          disabled: playing ? playing[0] === undefined : true,
+                          onClick: match[5]
                         }, React.createElement("i", {
                               className: "fas fa-step-backward"
                             })), React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: currentTrackIndex === undefined,
+                          disabled: playing ? playing[0] === undefined : true,
                           onClick: (function (param) {
                               return Curry._1(togglePlay, /* () */0);
                             })
-                        }, match[0] ? React.createElement("i", {
-                                className: "fas fa-pause"
-                              }) : React.createElement("i", {
-                                className: "fa fa-play"
-                              })), React.createElement("button", {
+                        }, tmp), React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: currentTrackIndex === undefined,
-                          onClick: match[7]
+                          disabled: playing ? playing[0] === undefined : true,
+                          onClick: match[6]
                         }, React.createElement("i", {
                               className: "fas fa-step-forward"
                             })))));

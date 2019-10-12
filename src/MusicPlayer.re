@@ -9,8 +9,7 @@ let initialState: SharedTypes.state = {
     {name: "Benjamin Tissot - Ukulele", file: ukulele},
     {name: "Benjamin Tissot - Creative Minds", file: creativeminds},
   |],
-  currentTrackIndex: None,
-  isPlaying: false,
+  playing: NotPlaying,
   audioPlayer: JsAudio.make(""),
 };
 
@@ -20,18 +19,17 @@ type action =
 
 let withTogglePlay = state: SharedTypes.state => {
   ...state,
-  isPlaying: !state.SharedTypes.isPlaying,
+  playing:
+    switch (state.SharedTypes.playing) {
+    | Playing(Some(_)) => NotPlaying
+    | _ => NotPlaying
+    },
 };
 
-let withPlayTrack = (state: SharedTypes.state, index: int) => {
-  let newState = {
-    ...state,
-    currentTrackIndex: Some(index),
-    isPlaying: true,
-    audioPlayer: JsAudio.(make(state.tracks[index].file)),
-  };
-  Js.log(newState.isPlaying);
-  newState;
+let withPlayTrack = (state: SharedTypes.state, index) => {
+  ...state,
+  playing: Playing(Some(index)),
+  audioPlayer: JsAudio.(make(state.tracks[index].file)),
 };
 
 let reducer = (state: SharedTypes.state, action) =>
@@ -57,16 +55,13 @@ let make = (~children) => {
 
   React.useEffect1(
     () => {
-      switch (state.currentTrackIndex) {
-      | None => ()
-      | Some(_idx) =>
-        state.isPlaying ?
-          JsAudio.(state.audioPlayer |> play) :
-          JsAudio.(state.audioPlayer |> pause)
+      switch (state.playing) {
+      | Playing(Some(_idx)) => JsAudio.(state.audioPlayer |> play)
+      | _ => JsAudio.(state.audioPlayer |> pause)
       };
       None;
     },
-    [|state|],
+    [|state.playing|],
   );
 
   <MusicPlayerProvider value=(state, dispatch)>

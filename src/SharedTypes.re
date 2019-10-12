@@ -5,9 +5,12 @@ type musicTrack = {
 
 type musicTracks = array(musicTrack);
 
+type playing =
+  | Playing(option(int))
+  | NotPlaying;
+
 type state = {
   tracks: musicTracks,
-  currentTrackIndex: option(int),
-  isPlaying: bool,
+  playing,
   audioPlayer: JsAudio.audio,
 };

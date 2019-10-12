@@ -3,9 +3,8 @@ open ReactUtils;
 [@react.component]
 let make = () => {
   let (
-    isPlaying,
+    playing,
     trackList,
-    currentTrackIndex,
     _currentTrackName,
     _togglePlay,
     playTrack,
@@ -21,12 +20,12 @@ let make = () => {
           <div className="box" key={index |> string_of_int}>
             <button className="button" onClick={_ => playTrack(index)}>
               {
-                switch (currentTrackIndex) {
-                | None => <i className="fas fa-play" />
-                | Some(idx) =>
-                  idx === index && isPlaying ?
+                switch (playing) {
+                | Playing(Some(idx)) =>
+                  idx === index ?
                     <i className="fas fa-pause" /> :
                     <i className="fas fa-play" />
+                | _ => <i className="fas fa-play" />
                 }
               }
             </button>

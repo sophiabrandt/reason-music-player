@@ -1,49 +1,46 @@
 let useMusicPlayer = () => {
   let (state, dispatch) = React.useContext(MusicPlayer.musicPlayerContext);
 
-  let isPlaying = state.isPlaying;
+  let playing = state.playing;
 
   let trackList = state.tracks;
 
-  let currentTrackIndex = state.currentTrackIndex;
-
   let currentTrackName =
-    switch (state.currentTrackIndex) {
-    | None => ""
-    | Some(idx) => state.tracks[idx].name
+    switch (playing) {
+    | Playing(Some(idx)) => state.tracks[idx].name
+    | _ => "Please choose a track to play"
     };
 
   let togglePlay = () => MusicPlayer.TogglePlay |> dispatch;
 
   let playTrack = index =>
-    switch (state.currentTrackIndex) {
-    | None => MusicPlayer.PlayTrack(index) |> dispatch
-    | Some(idx) =>
+    switch (playing) {
+    | Playing(Some(idx)) =>
       index === idx ? togglePlay() : MusicPlayer.PlayTrack(index) |> dispatch
+    | _ => MusicPlayer.PlayTrack(index) |> dispatch
     };
 
-  let playPreviousTrack = _ =>
-    switch (state.currentTrackIndex) {
-    | None => ()
-    | Some(idx) =>
-      togglePlay();
-      idx === 0 ? playTrack(idx) : playTrack(idx - 1);
+  let playPreviousTrack = _ => {
+    togglePlay();
+    switch (playing) {
+    | Playing(Some(idx)) => idx === 0 ? playTrack(idx) : playTrack(idx - 1)
+    | _ => ()
     };
+  };
 
   let playNextTrack = _ => {
     let trackListEnd = Array.length(trackList) - 1;
-    switch (state.currentTrackIndex) {
-    | None => ()
-    | Some(idx) =>
-      togglePlay();
-      idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1);
+    togglePlay();
+    switch (playing) {
+    | Playing(Some(idx)) =>
+      idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1)
+    | _ => ()
     };
   };
 
   (
-    isPlaying,
+    playing,
     trackList,
-    currentTrackIndex,
     currentTrackName,
     togglePlay,
     playTrack,
