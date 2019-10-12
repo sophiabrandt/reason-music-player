@@ -29,6 +29,7 @@ function useMusicPlayer(param) {
         if (match$1) {
           return Curry._1(dispatch, /* TogglePlay */0);
         } else {
+          state[/* audioPlayer */2].pause();
           return Curry._1(dispatch, /* PlayTrack */[index]);
         }
       } else {
@@ -39,7 +40,6 @@ function useMusicPlayer(param) {
     }
   };
   var playPreviousTrack = function (param) {
-    Curry._1(dispatch, /* TogglePlay */0);
     if (playing) {
       var match = playing[0];
       if (match !== undefined) {
@@ -59,7 +59,6 @@ function useMusicPlayer(param) {
   };
   var playNextTrack = function (param) {
     var trackListEnd = trackList.length - 1 | 0;
-    Curry._1(dispatch, /* TogglePlay */0);
     if (playing) {
       var match = playing[0];
       if (match !== undefined) {
