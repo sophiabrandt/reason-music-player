@@ -18,7 +18,7 @@ let make = () => {
       <div className="current-track has-text-light">
         <marquee> {s(currentTrackName)} </marquee>
       </div>
-      <div className="has-text-centered">
+      <div className="buttons is-centered">
         <button
           className="button has-text-light has-background-grey-dark"
           onClick=playPreviousTrack

@@ -13,7 +13,7 @@ function PlayerControls(Props) {
                 }, React.createElement("div", {
                       className: "current-track has-text-light"
                     }, React.createElement("marquee", undefined, match[2])), React.createElement("div", {
-                      className: "has-text-centered"
+                      className: "buttons is-centered"
                     }, React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
                           disabled: playing ? false : true,
