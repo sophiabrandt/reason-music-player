@@ -35,7 +35,7 @@ var initialState = /* record */[
   initialState_002
 ];
 
-function withTogglePlay(state) {
+function withPauseTrack(state) {
   return /* record */[
           /* tracks */state[/* tracks */0],
           /* playing : NotPlaying */0,
@@ -55,7 +55,7 @@ function reducer(state, action) {
   if (action) {
     return withPlayTrack(state, action[0]);
   } else {
-    return withTogglePlay(state);
+    return withPauseTrack(state);
   }
 }
 
@@ -108,7 +108,7 @@ export {
   ukulele ,
   creativeminds ,
   initialState ,
-  withTogglePlay ,
+  withPauseTrack ,
   withPlayTrack ,
   reducer ,
   musicPlayerContext ,

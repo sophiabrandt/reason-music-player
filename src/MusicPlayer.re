@@ -14,16 +14,12 @@ let initialState: SharedTypes.state = {
 };
 
 type action =
-  | TogglePlay
+  | PauseTrack
   | PlayTrack(int);
 
-let withTogglePlay = state: SharedTypes.state => {
+let withPauseTrack = state: SharedTypes.state => {
   ...state,
-  playing:
-    switch (state.SharedTypes.playing) {
-    | Playing(_idx) => NotPlaying
-    | _ => NotPlaying
-    },
+  playing: NotPlaying,
 };
 
 let withPlayTrack = (state: SharedTypes.state, index) => {
@@ -34,7 +30,7 @@ let withPlayTrack = (state: SharedTypes.state, index) => {
 
 let reducer = (state: SharedTypes.state, action) =>
   switch (action) {
-  | TogglePlay => withTogglePlay(state)
+  | PauseTrack => withPauseTrack(state)
   | PlayTrack(index) => withPlayTrack(state, index)
   };
 
@@ -57,7 +53,7 @@ let make = (~children) => {
     () => {
       switch (state.playing) {
       | Playing(_idx) => JsAudio.(state.audioPlayer |> play)
-      | _ => JsAudio.(state.audioPlayer |> pause)
+      | NotPlaying => JsAudio.(state.audioPlayer |> pause)
       };
       None;
     },

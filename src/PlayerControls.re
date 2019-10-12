@@ -6,7 +6,7 @@ let make = () => {
     playing,
     _trackList,
     currentTrackName,
-    togglePlay,
+    pauseTrack,
     _playTrack,
     playPreviousTrack,
     playNextTrack,
@@ -32,7 +32,7 @@ let make = () => {
         </button>
         <button
           className="button has-text-light has-background-grey-dark"
-          onClick={_ => togglePlay()}
+          onClick={_ => pauseTrack()}
           disabled={
             switch (playing) {
             | Playing(_idx) => false
@@ -42,7 +42,7 @@ let make = () => {
           {
             switch (playing) {
             | Playing(_idx) => <i className="fas fa-pause" />
-            | _ => <i className="fas fa-play" />
+            | NotPlaying => <i className="fas fa-play" />
             }
           }
         </button>

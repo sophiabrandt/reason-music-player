@@ -8,21 +8,21 @@ let useMusicPlayer = () => {
   let currentTrackName =
     switch (playing) {
     | Playing(idx) => state.tracks[idx].name
-    | _ => "Please choose a track to play"
+    | NotPlaying => "Please choose a track to play"
     };
 
-  let togglePlay = () => MusicPlayer.TogglePlay |> dispatch;
+  let pauseTrack = () => MusicPlayer.PauseTrack |> dispatch;
 
   let playTrack = index =>
     switch (playing) {
     | Playing(idx) =>
       index === idx ?
-        togglePlay() :
+        pauseTrack() :
         {
           JsAudio.(state.audioPlayer |> pause);
           MusicPlayer.PlayTrack(index) |> dispatch;
         }
-    | _ => MusicPlayer.PlayTrack(index) |> dispatch
+    | NotPlaying => MusicPlayer.PlayTrack(index) |> dispatch
     };
 
   let trackListLength = Array.length(trackList);
@@ -33,20 +33,20 @@ let useMusicPlayer = () => {
       ((idx - 1) mod trackListLength + trackListLength)
       mod trackListLength
       |> playTrack
-    | _ => ()
+    | NotPlaying => ()
     };
 
   let playNextTrack = _ =>
     switch (playing) {
     | Playing(idx) => (idx + 1) mod trackListLength |> playTrack
-    | _ => ()
+    | NotPlaying => ()
     };
 
   (
     playing,
     trackList,
     currentTrackName,
-    togglePlay,
+    pauseTrack,
     playTrack,
     playPreviousTrack,
     playNextTrack,

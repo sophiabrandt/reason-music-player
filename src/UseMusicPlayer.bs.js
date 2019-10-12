@@ -13,14 +13,14 @@ function useMusicPlayer(param) {
   var playing = state[/* playing */1];
   var trackList = state[/* tracks */0];
   var currentTrackName = playing ? Caml_array.caml_array_get(state[/* tracks */0], playing[0])[/* name */0] : "Please choose a track to play";
-  var togglePlay = function (param) {
-    return Curry._1(dispatch, /* TogglePlay */0);
+  var pauseTrack = function (param) {
+    return Curry._1(dispatch, /* PauseTrack */0);
   };
   var playTrack = function (index) {
     if (playing) {
       var match = index === playing[0];
       if (match) {
-        return Curry._1(dispatch, /* TogglePlay */0);
+        return Curry._1(dispatch, /* PauseTrack */0);
       } else {
         state[/* audioPlayer */2].pause();
         return Curry._1(dispatch, /* PlayTrack */[index]);
@@ -48,7 +48,7 @@ function useMusicPlayer(param) {
           playing,
           trackList,
           currentTrackName,
-          togglePlay,
+          pauseTrack,
           playTrack,
           playPreviousTrack,
           playNextTrack

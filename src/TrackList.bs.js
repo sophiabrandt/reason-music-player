@@ -26,14 +26,16 @@ function TrackList(Props) {
                     return React.createElement("div", {
                                 key: String(index),
                                 className: "box"
-                              }, React.createElement("button", {
-                                    className: "button",
-                                    onClick: (function (param) {
-                                        return Curry._1(playTrack, index);
-                                      })
-                                  }, tmp), React.createElement("div", {
-                                    className: "song-title"
-                                  }, track[/* name */0]));
+                              }, React.createElement("div", {
+                                    className: "columns is-vcentered"
+                                  }, React.createElement("button", {
+                                        className: "button",
+                                        onClick: (function (param) {
+                                            return Curry._1(playTrack, index);
+                                          })
+                                      }, tmp), React.createElement("div", {
+                                        className: "song-title column"
+                                      }, track[/* name */0])));
                   }), match[1]));
 }
 

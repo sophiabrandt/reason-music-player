@@ -6,7 +6,7 @@ let make = () => {
     playing,
     trackList,
     _currentTrackName,
-    _togglePlay,
+    _pauseTrack,
     playTrack,
     _playPreviousTrack,
     _playNextTrack,
@@ -18,18 +18,22 @@ let make = () => {
       Array.mapi(
         (index, track: SharedTypes.musicTrack) =>
           <div className="box" key={index |> string_of_int}>
-            <button className="button" onClick={_ => playTrack(index)}>
-              {
-                switch (playing) {
-                | Playing(idx) =>
-                  idx === index ?
-                    <i className="fas fa-pause" /> :
-                    <i className="fas fa-play" />
-                | NotPlaying => <i className="fas fa-play" />
+            <div className="columns is-vcentered">
+              <button className="button" onClick={_ => playTrack(index)}>
+                {
+                  switch (playing) {
+                  | Playing(idx) =>
+                    idx === index ?
+                      <i className="fas fa-pause" /> :
+                      <i className="fas fa-play" />
+                  | NotPlaying => <i className="fas fa-play" />
+                  }
                 }
-              }
-            </button>
-            <div className="song-title"> {s(track.SharedTypes.name)} </div>
+              </button>
+              <div className="song-title column">
+                {s(track.SharedTypes.name)}
+              </div>
+            </div>
           </div>,
         trackList,
       )
