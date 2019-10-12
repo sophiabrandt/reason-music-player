@@ -11,23 +11,14 @@ function TrackList(Props) {
   var playing = match[0];
   return React.createElement(React.Fragment, undefined, $$Array.mapi((function (index, track) {
                     var tmp;
-                    var exit = 0;
                     if (playing) {
-                      var match = playing[0];
-                      if (match !== undefined) {
-                        var match$1 = match === index;
-                        tmp = match$1 ? React.createElement("i", {
-                                className: "fas fa-pause"
-                              }) : React.createElement("i", {
-                                className: "fas fa-play"
-                              });
-                      } else {
-                        exit = 1;
-                      }
+                      var match = playing[0] === index;
+                      tmp = match ? React.createElement("i", {
+                              className: "fas fa-pause"
+                            }) : React.createElement("i", {
+                              className: "fas fa-play"
+                            });
                     } else {
-                      exit = 1;
-                    }
-                    if (exit === 1) {
                       tmp = React.createElement("i", {
                             className: "fas fa-play"
                           });

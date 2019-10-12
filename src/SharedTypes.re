@@ -6,7 +6,7 @@ type musicTrack = {
 type musicTracks = array(musicTrack);
 
 type playing =
-  | Playing(option(int))
+  | Playing(int)
   | NotPlaying;
 
 type state = {

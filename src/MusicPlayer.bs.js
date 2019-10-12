@@ -89,11 +89,7 @@ function MusicPlayer(Props) {
   React.useEffect((function () {
           var match = state[/* playing */1];
           if (match) {
-            if (match[0] !== undefined) {
-              state[/* audioPlayer */2].play();
-            } else {
-              state[/* audioPlayer */2].pause();
-            }
+            state[/* audioPlayer */2].play();
           } else {
             state[/* audioPlayer */2].pause();
           }

@@ -21,11 +21,11 @@ let make = () => {
             <button className="button" onClick={_ => playTrack(index)}>
               {
                 switch (playing) {
-                | Playing(Some(idx)) =>
+                | Playing(idx) =>
                   idx === index ?
                     <i className="fas fa-pause" /> :
                     <i className="fas fa-play" />
-                | _ => <i className="fas fa-play" />
+                | NotPlaying => <i className="fas fa-play" />
                 }
               }
             </button>

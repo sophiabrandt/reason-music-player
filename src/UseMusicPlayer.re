@@ -7,7 +7,7 @@ let useMusicPlayer = () => {
 
   let currentTrackName =
     switch (playing) {
-    | Playing(Some(idx)) => state.tracks[idx].name
+    | Playing(idx) => state.tracks[idx].name
     | _ => "Please choose a track to play"
     };
 
@@ -15,7 +15,7 @@ let useMusicPlayer = () => {
 
   let playTrack = index =>
     switch (playing) {
-    | Playing(Some(idx)) =>
+    | Playing(idx) =>
       index === idx ?
         togglePlay() :
         {
@@ -25,20 +25,22 @@ let useMusicPlayer = () => {
     | _ => MusicPlayer.PlayTrack(index) |> dispatch
     };
 
+  let trackListLength = Array.length(trackList);
+
   let playPreviousTrack = _ =>
     switch (playing) {
-    | Playing(Some(idx)) => idx === 0 ? playTrack(idx) : playTrack(idx - 1)
+    | Playing(idx) =>
+      ((idx - 1) mod trackListLength + trackListLength)
+      mod trackListLength
+      |> playTrack
     | _ => ()
     };
 
-  let playNextTrack = _ => {
-    let trackListEnd = Array.length(trackList) - 1;
+  let playNextTrack = _ =>
     switch (playing) {
-    | Playing(Some(idx)) =>
-      idx === trackListEnd ? playTrack(idx) : playTrack(idx + 1)
+    | Playing(idx) => (idx + 1) mod trackListLength |> playTrack
     | _ => ()
     };
-  };
 
   (
     playing,

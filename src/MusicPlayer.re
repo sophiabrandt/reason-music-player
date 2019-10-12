@@ -21,14 +21,14 @@ let withTogglePlay = state: SharedTypes.state => {
   ...state,
   playing:
     switch (state.SharedTypes.playing) {
-    | Playing(Some(_)) => NotPlaying
+    | Playing(_idx) => NotPlaying
     | _ => NotPlaying
     },
 };
 
 let withPlayTrack = (state: SharedTypes.state, index) => {
   ...state,
-  playing: Playing(Some(index)),
+  playing: Playing(index),
   audioPlayer: JsAudio.(make(state.tracks[index].file)),
 };
 
@@ -56,7 +56,7 @@ let make = (~children) => {
   React.useEffect1(
     () => {
       switch (state.playing) {
-      | Playing(Some(_idx)) => JsAudio.(state.audioPlayer |> play)
+      | Playing(_idx) => JsAudio.(state.audioPlayer |> play)
       | _ => JsAudio.(state.audioPlayer |> pause)
       };
       None;

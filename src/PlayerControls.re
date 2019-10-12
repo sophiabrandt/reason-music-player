@@ -24,8 +24,8 @@ let make = () => {
           onClick=playPreviousTrack
           disabled={
             switch (playing) {
-            | Playing(Some(_idx)) => false
-            | _ => true
+            | Playing(_idx) => false
+            | NotPlaying => true
             }
           }>
           <i className="fas fa-step-backward" />
@@ -35,13 +35,13 @@ let make = () => {
           onClick={_ => togglePlay()}
           disabled={
             switch (playing) {
-            | Playing(Some(_idx)) => false
-            | _ => true
+            | Playing(_idx) => false
+            | NotPlaying => true
             }
           }>
           {
             switch (playing) {
-            | Playing(Some(_idx)) => <i className="fas fa-pause" />
+            | Playing(_idx) => <i className="fas fa-pause" />
             | _ => <i className="fas fa-play" />
             }
           }
@@ -51,8 +51,8 @@ let make = () => {
           onClick=playNextTrack
           disabled={
             switch (playing) {
-            | Playing(Some(_idx)) => false
-            | _ => true
+            | Playing(_idx) => false
+            | NotPlaying => true
             }
           }>
           <i className="fas fa-step-forward" />

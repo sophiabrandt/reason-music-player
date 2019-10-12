@@ -8,20 +8,6 @@ function PlayerControls(Props) {
   var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(/* () */0);
   var togglePlay = match[3];
   var playing = match[0];
-  var tmp;
-  var exit = 0;
-  if (playing && playing[0] !== undefined) {
-    tmp = React.createElement("i", {
-          className: "fas fa-pause"
-        });
-  } else {
-    exit = 1;
-  }
-  if (exit === 1) {
-    tmp = React.createElement("i", {
-          className: "fas fa-play"
-        });
-  }
   return React.createElement(React.Fragment, undefined, React.createElement("div", {
                   className: "box controls has-background-grey-dark"
                 }, React.createElement("div", {
@@ -30,19 +16,23 @@ function PlayerControls(Props) {
                       className: "has-text-centered"
                     }, React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: playing ? playing[0] === undefined : true,
+                          disabled: playing ? false : true,
                           onClick: match[5]
                         }, React.createElement("i", {
                               className: "fas fa-step-backward"
                             })), React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: playing ? playing[0] === undefined : true,
+                          disabled: playing ? false : true,
                           onClick: (function (param) {
                               return Curry._1(togglePlay, /* () */0);
                             })
-                        }, tmp), React.createElement("button", {
+                        }, playing ? React.createElement("i", {
+                                className: "fas fa-pause"
+                              }) : React.createElement("i", {
+                                className: "fas fa-play"
+                              })), React.createElement("button", {
                           className: "button has-text-light has-background-grey-dark",
-                          disabled: playing ? playing[0] === undefined : true,
+                          disabled: playing ? false : true,
                           onClick: match[6]
                         }, React.createElement("i", {
                               className: "fas fa-step-forward"

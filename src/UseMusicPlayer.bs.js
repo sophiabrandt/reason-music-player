@@ -3,6 +3,7 @@
 import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as React from "react";
 import * as Caml_array from "bs-platform/lib/es6/caml_array.js";
+import * as Caml_int32 from "bs-platform/lib/es6/caml_int32.js";
 import * as MusicPlayer$ReasonMusicPlayer from "./MusicPlayer.bs.js";
 
 function useMusicPlayer(param) {
@@ -11,67 +12,34 @@ function useMusicPlayer(param) {
   var state = match[0];
   var playing = state[/* playing */1];
   var trackList = state[/* tracks */0];
-  var currentTrackName;
-  if (playing) {
-    var match$1 = playing[0];
-    currentTrackName = match$1 !== undefined ? Caml_array.caml_array_get(state[/* tracks */0], match$1)[/* name */0] : "Please choose a track to play";
-  } else {
-    currentTrackName = "Please choose a track to play";
-  }
+  var currentTrackName = playing ? Caml_array.caml_array_get(state[/* tracks */0], playing[0])[/* name */0] : "Please choose a track to play";
   var togglePlay = function (param) {
     return Curry._1(dispatch, /* TogglePlay */0);
   };
   var playTrack = function (index) {
     if (playing) {
-      var match = playing[0];
-      if (match !== undefined) {
-        var match$1 = index === match;
-        if (match$1) {
-          return Curry._1(dispatch, /* TogglePlay */0);
-        } else {
-          state[/* audioPlayer */2].pause();
-          return Curry._1(dispatch, /* PlayTrack */[index]);
-        }
+      var match = index === playing[0];
+      if (match) {
+        return Curry._1(dispatch, /* TogglePlay */0);
       } else {
+        state[/* audioPlayer */2].pause();
         return Curry._1(dispatch, /* PlayTrack */[index]);
       }
     } else {
       return Curry._1(dispatch, /* PlayTrack */[index]);
     }
   };
+  var trackListLength = trackList.length;
   var playPreviousTrack = function (param) {
     if (playing) {
-      var match = playing[0];
-      if (match !== undefined) {
-        var idx = match;
-        var match$1 = idx === 0;
-        if (match$1) {
-          return playTrack(idx);
-        } else {
-          return playTrack(idx - 1 | 0);
-        }
-      } else {
-        return /* () */0;
-      }
+      return playTrack(Caml_int32.mod_(Caml_int32.mod_(playing[0] - 1 | 0, trackListLength) + trackListLength | 0, trackListLength));
     } else {
       return /* () */0;
     }
   };
   var playNextTrack = function (param) {
-    var trackListEnd = trackList.length - 1 | 0;
     if (playing) {
-      var match = playing[0];
-      if (match !== undefined) {
-        var idx = match;
-        var match$1 = idx === trackListEnd;
-        if (match$1) {
-          return playTrack(idx);
-        } else {
-          return playTrack(idx + 1 | 0);
-        }
-      } else {
-        return /* () */0;
-      }
+      return playTrack(Caml_int32.mod_(playing[0] + 1 | 0, trackListLength));
     } else {
       return /* () */0;
     }
