@@ -19,7 +19,7 @@
     <a href="https://github.com/sophiabrandt/reason-music-player"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sophiabrandt/reason-music-player">View Demo</a>
+    <a href="https://sophiabrandt.github.io/reason-music-player/">View Demo</a>
     ·
     <a href="https://github.com/sophiabrandt/reason-music-player/issues">Report Bug</a>
     ·
@@ -50,6 +50,8 @@
 > A ReasonReact music player with the React Context API
 
 This is a port of the blog post **[How to Use the useContext Hook in React][upmostly]** to ReasonReact.
+
+**☞ [View Demo][demo]**
 
 ### Built With
 
@@ -168,3 +170,4 @@ Project Link: [https://github.com/sophiabrandt/reason-music-player](https://gith
 [license-url]: https://github.com/sophiabrandt/reason-music-player/blob/master/LICENSE.txt
 [upmostly]: https://upmostly.com/tutorials/how-to-use-the-usecontext-hook-in-react
 [bensound]: https://www.bensound.com/
+[demo]: https://sophiabrandt.github.io/reason-music-player/
