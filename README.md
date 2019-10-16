@@ -49,7 +49,7 @@
 
 > A ReasonReact music player with the React Context API
 
-This is a port of the blog post **[How to Use the useContext Hook in React][upmostly]** to ReasonReact.
+This is a port of the James King's blog post **[How to Use the useContext Hook in React][upmostly]** to ReasonReact.
 
 **☞ [View Demo][demo]**
 
@@ -67,7 +67,7 @@ To get a local copy up and running follow these steps:
 
 ### Prerequisites
 
-You need npm or yarn.
+You need [Node.js](https://nodejs.org/en/) with npm or yarn.
 
 - npm
 
@@ -84,8 +84,18 @@ npm install yarn -g
 Install [Bucklescript and Reason](https://reasonml.github.io/docs/en/installation):
 
 ```sh
-yarn global add bs-platform
+npm install -g bs-platform --unsafe-perm
 ```
+or
+
+```sh
+yarn global add bs-platform --unsafe-perm
+```
+
+(I use [pnpm](https://pnpm.js.org/) for installing local packages, that's why you'll find a `pnpm-lock.yml` file in this repository.)
+
+For **editor support**, check the [Reason Docs](https://reasonml.github.io/docs/en/editor-plugins).  
+For Vim, you can check my blog post about [ReasonML Development With Vim](https://www.rockyourcode.com/reason-ml-development-with-vim).
 
 ### Installation
 
@@ -95,10 +105,12 @@ yarn global add bs-platform
 git clone https://github.com/sophiabrandt/reason-music-player.git
 ```
 
+(Alternatively, use [degit](https://github.com/Rich-Harris/degit): `npx degit sophiabrandt/reason-music-player reason-music-player`).
+
 3. Install NPM packages
 
 ```sh
-cd reason-music-player && yarn install
+cd reason-music-player && npm install
 ```
 
 <!-- USAGE EXAMPLES -->
@@ -108,13 +120,13 @@ cd reason-music-player && yarn install
 Run the project locally under `http://localhost:3000` via:
 
 ```sh
-yarn run start
+npm run start
 ```
 
 Create a production build:
 
 ```sh
-yarn run build
+npm run build
 ```
 
 <!-- ROADMAP -->
