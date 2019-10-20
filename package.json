@@ -1,8 +1,8 @@
 {
   "name": "reason-music-player",
   "version": "0.1.0",
+  "homepage": "http://sophiabrandt.github.io/reason-music-player",
   "scripts": {
-    "homepage": "http://sophiabrandt.github.io/reason-music-player",
     "start": "concurrently -k \"npm run start:bsb\" \"npm run start:webpack\"",
     "start:bsb": "bsb -clean-world -make-world -w",
     "start:webpack": "webpack-dev-server --port 3000",
