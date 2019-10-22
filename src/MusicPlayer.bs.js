@@ -77,10 +77,10 @@ function makeProps(value, children, param) {
 
 var make = musicPlayerContext.Provider;
 
-var MusicPlayerProvider = /* module */[
-  /* makeProps */makeProps,
-  /* make */make
-];
+var MusicPlayerProvider = {
+  makeProps: makeProps,
+  make: make
+};
 
 function MusicPlayer(Props) {
   var children = Props.children;

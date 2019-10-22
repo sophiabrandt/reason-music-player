@@ -30,9 +30,7 @@ let make = () => {
                   }
                 }
               </button>
-              <div className="song-title column">
-                {s(track.SharedTypes.name)}
-              </div>
+              <div className="song-title column"> {s(track.name)} </div>
             </div>
           </div>,
         trackList,
