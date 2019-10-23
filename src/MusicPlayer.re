@@ -10,7 +10,7 @@ let initialState: SharedTypes.state = {
     {name: "Benjamin Tissot - Creative Minds", file: creativeminds},
   |],
   playing: NotPlaying,
-  audioPlayer: JsAudio.make(""),
+  audioPlayer: JsAudio.(make("")),
 };
 
 type action =
