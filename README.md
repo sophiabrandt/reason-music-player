@@ -53,6 +53,13 @@ This is a port of the James King's blog post **[How to Use the useContext Hook i
 
 **☞ [View Demo][demo]**
 
+If you want to follow along, you can read the **tutorial blog posts on dev.to**:
+
+- [How To Create a Music Player in Reason With The useContext Hook Part 1](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-1-59dj)
+- [How To Create a Music Player in Reason With The useContext Hook Part 2](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-2-3f4a)
+- [How To Create a Music Player in Reason With The useContext Hook Part 3](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-3-2f0g)
+- [How To Create a Music Player in Reason With The useContext Hook Part 4](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-4-2c9d)
+
 ### Built With
 
 - [ReasonML](https://reasonml.github.io/)
