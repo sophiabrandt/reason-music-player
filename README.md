@@ -49,11 +49,13 @@
 
 > A ReasonReact music player with the React Context API
 
-This is a port of the James King's blog post **[How to Use the useContext Hook in React][upmostly]** to ReasonReact.
-
 **☞ [View Demo][demo]**
 
-If you want to follow along, you can read the **tutorial blog posts on dev.to**:
+This is a port of James King's blog post **[How to Use the useContext Hook in React][upmostly]** to ReasonReact.
+
+With this repository you can see my progress in converting a React.js example to **ReasonML and ReasonReact**.
+
+It also serves as a code example for a **tutorial series**. If you want to follow along, you can read the **blog posts on dev.to**:
 
 - [How To Create a Music Player in Reason With The useContext Hook Part 1](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-1-59dj)
 - [How To Create a Music Player in Reason With The useContext Hook Part 2](https://dev.to/sophiabrandt/how-to-create-a-music-player-in-reason-with-the-usecontext-hook-part-2-3f4a)
@@ -74,34 +76,19 @@ To get a local copy up and running follow these steps:
 
 ### Prerequisites
 
-You need [Node.js](https://nodejs.org/en/) with npm or yarn.
-
-- npm
-
-```sh
-npm install npm@latest -g
-```
-
-- yarn
-
-```sh
-npm install yarn -g
-```
+Before using `reason-music-player` you need:
+- [Node.js](https://nodejs.org/en/) version 10.16.3 or higher
+- [npm](https://www.npmjs.com/get-npm), [yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.js.org/)
+- BuckleScript
 
 Install [Bucklescript and Reason](https://reasonml.github.io/docs/en/installation):
 
 ```sh
 npm install -g bs-platform --unsafe-perm
 ```
-or
-
-```sh
-yarn global add bs-platform --unsafe-perm
-```
-
 (I use [pnpm](https://pnpm.js.org/) for installing local packages, that's why you'll find a `pnpm-lock.yml` file in this repository.)
 
-For **editor support**, check the [Reason Docs](https://reasonml.github.io/docs/en/editor-plugins).  
+For **editor support**, check the [Reason Docs](https://reasonml.github.io/docs/en/editor-plugins).
 For Vim, you can check my blog post about [ReasonML Development With Vim](https://www.rockyourcode.com/reason-ml-development-with-vim).
 
 ### Installation
@@ -158,7 +145,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [`LICENSE`](LICENSE.txt) for more information.
 
 <!-- CONTACT -->
 
