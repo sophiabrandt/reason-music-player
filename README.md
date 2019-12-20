@@ -84,7 +84,7 @@ Before using `reason-music-player` you need:
 Install [Bucklescript and Reason](https://reasonml.github.io/docs/en/installation):
 
 ```sh
-npm install -g bs-platform --unsafe-perm
+npm install -g bs-platform@5.2.1 --unsafe-perm
 ```
 (I use [pnpm](https://pnpm.js.org/) for installing local packages, that's why you'll find a `pnpm-lock.yml` file in this repository.)
 
