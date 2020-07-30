@@ -10,41 +10,42 @@ function useMusicPlayer(param) {
   var match = React.useContext(MusicPlayer$ReasonMusicPlayer.musicPlayerContext);
   var dispatch = match[1];
   var state = match[0];
-  var playing = state[/* playing */1];
-  var trackList = state[/* tracks */0];
-  var currentTrackName = playing ? Caml_array.caml_array_get(state[/* tracks */0], playing[0])[/* name */0] : "Please choose a track to play";
+  var playing = state.playing;
+  var trackList = state.tracks;
+  var currentTrackName = playing ? Caml_array.caml_array_get(state.tracks, playing._0).name : "Please choose a track to play";
   var pauseTrack = function (param) {
     return Curry._1(dispatch, /* PauseTrack */0);
   };
   var playTrack = function (index) {
     if (playing) {
-      var match = index === playing[0];
-      if (match) {
+      if (index === playing._0) {
         return Curry._1(dispatch, /* PauseTrack */0);
       } else {
-        state[/* audioPlayer */2].pause();
-        return Curry._1(dispatch, /* PlayTrack */[index]);
+        state.audioPlayer.pause();
+        return Curry._1(dispatch, /* PlayTrack */{
+                    _0: index
+                  });
       }
     } else {
-      return Curry._1(dispatch, /* PlayTrack */[index]);
+      return Curry._1(dispatch, /* PlayTrack */{
+                  _0: index
+                });
     }
   };
   var trackListLength = trackList.length;
   var playPreviousTrack = function (param) {
     if (playing) {
-      return playTrack(Caml_int32.mod_(Caml_int32.mod_(playing[0] - 1 | 0, trackListLength) + trackListLength | 0, trackListLength));
-    } else {
-      return /* () */0;
+      return playTrack(Caml_int32.mod_(Caml_int32.mod_(playing._0 - 1 | 0, trackListLength) + trackListLength | 0, trackListLength));
     }
+    
   };
   var playNextTrack = function (param) {
     if (playing) {
-      return playTrack(Caml_int32.mod_(playing[0] + 1 | 0, trackListLength));
-    } else {
-      return /* () */0;
+      return playTrack(Caml_int32.mod_(playing._0 + 1 | 0, trackListLength));
     }
+    
   };
-  return /* tuple */[
+  return [
           playing,
           trackList,
           currentTrackName,

@@ -16,7 +16,7 @@ function App(Props) {
                           className: "is-size-2 has-text-centered"
                         }, "Reason Music Player"), React.createElement("br", undefined), React.createElement(MusicPlayer$ReasonMusicPlayer.make, {
                           children: null
-                        }, React.createElement(TrackList$ReasonMusicPlayer.make, { }), React.createElement(PlayerControls$ReasonMusicPlayer.make, { })))));
+                        }, React.createElement(TrackList$ReasonMusicPlayer.make, {}), React.createElement(PlayerControls$ReasonMusicPlayer.make, {})))));
 }
 
 var make = App;

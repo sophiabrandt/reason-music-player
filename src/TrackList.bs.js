@@ -6,23 +6,10 @@ import * as React from "react";
 import * as UseMusicPlayer$ReasonMusicPlayer from "./UseMusicPlayer.bs.js";
 
 function TrackList(Props) {
-  var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(/* () */0);
+  var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(undefined);
   var playTrack = match[4];
   var playing = match[0];
   return React.createElement(React.Fragment, undefined, $$Array.mapi((function (index, track) {
-                    var tmp;
-                    if (playing) {
-                      var match = playing[0] === index;
-                      tmp = match ? React.createElement("i", {
-                              className: "fas fa-pause"
-                            }) : React.createElement("i", {
-                              className: "fas fa-play"
-                            });
-                    } else {
-                      tmp = React.createElement("i", {
-                            className: "fas fa-play"
-                          });
-                    }
                     return React.createElement("div", {
                                 key: String(index),
                                 className: "box"
@@ -33,9 +20,17 @@ function TrackList(Props) {
                                         onClick: (function (param) {
                                             return Curry._1(playTrack, index);
                                           })
-                                      }, tmp), React.createElement("div", {
+                                      }, playing ? (
+                                          playing._0 === index ? React.createElement("i", {
+                                                  className: "fas fa-pause"
+                                                }) : React.createElement("i", {
+                                                  className: "fas fa-play"
+                                                })
+                                        ) : React.createElement("i", {
+                                              className: "fas fa-play"
+                                            })), React.createElement("div", {
                                         className: "song-title column"
-                                      }, track[/* name */0])));
+                                      }, track.name)));
                   }), match[1]));
 }
 

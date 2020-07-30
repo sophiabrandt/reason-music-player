@@ -12,57 +12,59 @@ var ukulele = BensoundUkuleleMp3.default;
 
 var creativeminds = BensoundCreativemindsMp3.default;
 
-var initialState_000 = /* tracks : array */[
-  /* record */[
-    /* name */"Benjamin Tissot - Summer",
-    /* file */summer
-  ],
-  /* record */[
-    /* name */"Benjamin Tissot - Ukulele",
-    /* file */ukulele
-  ],
-  /* record */[
-    /* name */"Benjamin Tissot - Creative Minds",
-    /* file */creativeminds
-  ]
+var initialState_tracks = [
+  {
+    name: "Benjamin Tissot - Summer",
+    file: summer
+  },
+  {
+    name: "Benjamin Tissot - Ukulele",
+    file: ukulele
+  },
+  {
+    name: "Benjamin Tissot - Creative Minds",
+    file: creativeminds
+  }
 ];
 
-var initialState_002 = /* audioPlayer */new Audio("");
+var initialState_audioPlayer = new Audio("");
 
-var initialState = /* record */[
-  initialState_000,
-  /* playing : NotPlaying */0,
-  initialState_002
-];
+var initialState = {
+  tracks: initialState_tracks,
+  playing: /* NotPlaying */0,
+  audioPlayer: initialState_audioPlayer
+};
 
 function withPauseTrack(state) {
-  return /* record */[
-          /* tracks */state[/* tracks */0],
-          /* playing : NotPlaying */0,
-          /* audioPlayer */state[/* audioPlayer */2]
-        ];
+  return {
+          tracks: state.tracks,
+          playing: /* NotPlaying */0,
+          audioPlayer: state.audioPlayer
+        };
 }
 
 function withPlayTrack(state, index) {
-  return /* record */[
-          /* tracks */state[/* tracks */0],
-          /* playing : Playing */[index],
-          /* audioPlayer */new Audio(Caml_array.caml_array_get(state[/* tracks */0], index)[/* file */1])
-        ];
+  return {
+          tracks: state.tracks,
+          playing: /* Playing */{
+            _0: index
+          },
+          audioPlayer: new Audio(Caml_array.caml_array_get(state.tracks, index).file)
+        };
 }
 
 function reducer(state, action) {
   if (action) {
-    return withPlayTrack(state, action[0]);
+    return withPlayTrack(state, action._0);
   } else {
     return withPauseTrack(state);
   }
 }
 
-var musicPlayerContext = React.createContext(/* tuple */[
+var musicPlayerContext = React.createContext([
       initialState,
       (function (prim) {
-          return /* () */0;
+          
         })
     ]);
 
@@ -87,18 +89,18 @@ function MusicPlayer(Props) {
   var match = React.useReducer(reducer, initialState);
   var state = match[0];
   React.useEffect((function () {
-          var match = state[/* playing */1];
-          if (match) {
-            state[/* audioPlayer */2].play();
+          var _idx = state.playing;
+          if (_idx) {
+            state.audioPlayer.play();
           } else {
-            state[/* audioPlayer */2].pause();
+            state.audioPlayer.pause();
           }
-          return ;
-        }), /* array */[state[/* playing */1]]);
-  return React.createElement(make, makeProps(/* tuple */[
+          
+        }), [state.playing]);
+  return React.createElement(make, makeProps([
                   state,
                   match[1]
-                ], children, /* () */0));
+                ], children, undefined));
 }
 
 var make$1 = MusicPlayer;

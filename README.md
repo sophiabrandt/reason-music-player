@@ -79,14 +79,6 @@ To get a local copy up and running follow these steps:
 Before using `reason-music-player` you need:
 - [Node.js](https://nodejs.org/en/) version 10.16.3 or higher
 - [npm](https://www.npmjs.com/get-npm), [yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.js.org/)
-- BuckleScript
-
-Install [Bucklescript and Reason](https://reasonml.github.io/docs/en/installation):
-
-```sh
-npm install -g bs-platform@5.2.1 --unsafe-perm
-```
-(I use [pnpm](https://pnpm.js.org/) for installing local packages, that's why you'll find a `pnpm-lock.yml` file in this repository.)
 
 For **editor support**, check the [Reason Docs](https://reasonml.github.io/docs/en/editor-plugins).
 For Vim, you can check my blog post about [ReasonML Development With Vim](https://www.rockyourcode.com/reason-ml-development-with-vim).

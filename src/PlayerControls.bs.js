@@ -5,7 +5,7 @@ import * as React from "react";
 import * as UseMusicPlayer$ReasonMusicPlayer from "./UseMusicPlayer.bs.js";
 
 function PlayerControls(Props) {
-  var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(/* () */0);
+  var match = UseMusicPlayer$ReasonMusicPlayer.useMusicPlayer(undefined);
   var pauseTrack = match[3];
   var playing = match[0];
   return React.createElement(React.Fragment, undefined, React.createElement("div", {
@@ -24,7 +24,7 @@ function PlayerControls(Props) {
                           className: "button has-text-light has-background-grey-dark",
                           disabled: playing ? false : true,
                           onClick: (function (param) {
-                              return Curry._1(pauseTrack, /* () */0);
+                              return Curry._1(pauseTrack, undefined);
                             })
                         }, playing ? React.createElement("i", {
                                 className: "fas fa-pause"
