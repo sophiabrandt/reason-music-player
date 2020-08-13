@@ -1,10 +1,10 @@
 dependencies:
   react: 16.13.1
   react-dom: 16.13.1_react@16.13.1
-  reason-react: 0.9.1_fb06d71dfafe4d41130745a272895a9e
+  reason-react: 0.9.1_745d62c49faf64d0e4b6f7c1fc8dd42f
 devDependencies:
-  bs-platform: 8.0.3
-  concurrently: 5.2.0
+  bs-platform: 8.2.0
+  concurrently: 5.3.0
   file-loader: 6.0.0_webpack@4.44.1
   gh-pages: 3.1.0
   html-webpack-plugin: 4.3.0_webpack@4.44.1
@@ -569,12 +569,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
-  /bs-platform/8.0.3:
+  /bs-platform/8.2.0:
     dev: true
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-I7wulOPM0/NGamwm9CDh9rGjW1oIKltPwwEIOJrL8DBFRXI8OFSACtWGlpaoOw76Xpf+KcVokr00keS2NlzA3A==
+      integrity: sha512-quvmUac/ZxGDsT7L5+6RNXrLPvLHkWFownacaqlwVoyAm770bPyupTRU49ALPGk3HpjfD5eE+lpGdOSPtuwJiA==
   /buffer-from/1.1.1:
     dev: true
     resolution:
@@ -827,7 +827,7 @@ packages:
       '0': node >= 0.8
     resolution:
       integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==
-  /concurrently/5.2.0:
+  /concurrently/5.3.0:
     dependencies:
       chalk: 2.4.2
       date-fns: 2.6.0
@@ -843,7 +843,7 @@ packages:
       node: '>=6.0.0'
     hasBin: true
     resolution:
-      integrity: sha512-XxcDbQ4/43d6CxR7+iV8IZXhur4KbmEJk1CetVMUqCy34z9l0DkszbY+/9wvmSnToTej0SYomc2WSRH+L0zVJw==
+      integrity: sha512-8MhqOB6PWlBfA2vJ8a0bSFKATOdWlHiQlk11IfmQBPaHVP8oP2gsh2MObE6UR3hqDHqvaIvLTyceNW6obVuFHQ==
   /connect-history-api-fallback/1.6.0:
     dev: true
     engines:
@@ -3514,9 +3514,9 @@ packages:
     optional: true
     resolution:
       integrity: sha512-0xe001vZBnJEK+uKcj8qOhyAKPzIT+gStxWr3LCB0DwcXR5NZJ3IaC+yGnHCYzB/S7ov3m3EEbZI2zeNvX+hGQ==
-  /reason-react/0.9.1_fb06d71dfafe4d41130745a272895a9e:
+  /reason-react/0.9.1_745d62c49faf64d0e4b6f7c1fc8dd42f:
     dependencies:
-      bs-platform: 8.0.3
+      bs-platform: 8.2.0
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
     dev: false
@@ -4686,8 +4686,8 @@ packages:
     resolution:
       integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==
 specifiers:
-  bs-platform: ^8.0.3
-  concurrently: ^5.2.0
+  bs-platform: ^8.2.0
+  concurrently: ^5.3.0
   file-loader: ^6.0.0
   gh-pages: ^3.1.0
   html-webpack-plugin: ^4.3.0
