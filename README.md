@@ -1,8 +1,8 @@
 <!-- PROJECT SHIELDS -->
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![workflow status][workflow-shield]][workflow-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -166,6 +166,8 @@ Project Link: [https://github.com/sophiabrandt/reason-music-player](https://gith
 [issues-url]: https://github.com/sophiabrandt/reason-music-player/issues
 [license-shield]: https://img.shields.io/github/license/sophiabrandt/reason-music-player.svg?style=flat-square
 [license-url]: https://github.com/sophiabrandt/reason-music-player/blob/master/LICENSE.txt
+[workflow-shield]: https://img.shields.io/github/workflow/status/sophiabrandt/reason-music-player/Build%20Reason?style=flat-square&logo=Github-Actions
+[workflow-url]: https://github.com/sophiabrandt/reason-music-player/commits/master
 [upmostly]: https://upmostly.com/tutorials/how-to-use-the-usecontext-hook-in-react
 [bensound]: https://www.bensound.com/
 [demo]: https://sophiabrandt.github.io/reason-music-player/
