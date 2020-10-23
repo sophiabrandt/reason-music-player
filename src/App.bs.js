@@ -11,7 +11,7 @@ function App(Props) {
             }, React.createElement("div", {
                   className: "container"
                 }, React.createElement("div", {
-                      className: "column is-6 is-offset-4"
+                      className: "column is-6 is-offset-3"
                     }, React.createElement("h1", {
                           className: "is-size-2 has-text-centered"
                         }, "Reason Music Player"), React.createElement("br", undefined), React.createElement(MusicPlayer$ReasonMusicPlayer.make, {
