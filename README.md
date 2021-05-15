@@ -47,6 +47,13 @@
 
 ## About The Project
 
+
+**UPDATE**:
+ReasonML + BuckleScript is now [Rescript](https://rescript-lang.org/blog/bucklescript-is-rebranding).
+As the ecosystem has changed around those tools, this repository is **out of date**.
+
+---
+
 > A ReasonReact music player with the React Context API
 
 **☞ [View Demo][demo]**
